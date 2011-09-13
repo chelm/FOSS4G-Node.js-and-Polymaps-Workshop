@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="../lib/polymaps.js"></script>
+    <script src="http://127.0.0.1:5000/socket.io/socket.io.js"></script>
+    <style type="text/css">
+      @import url("../lib/example.css");
+    </style>
+  </head>
+  <body id="map">
+    <h1>Socket IO Example</h1>
+    <button onclick="connect()">Connect</button>
+    <script type="text/javascript">
+
+      function connect(){
+        socket = io.connect('http://127.0.0.1:5000');
+        socket.on('connect',function(){
+          console.log('Connected');
+        })
+        socket.on('tweet', function (data) {
+          console.log(data);
+          add_feature(data);
+        });
+      }
+
+      var po = org.polymaps;
+
+      var map = po.map()
+        .container(document.getElementById("map").appendChild(po.svg("svg")))
+        .center({lat: 39, lon: -96})
+        .zoom(4)
+        .zoomRange([3, 7])
+        .add(po.interact());
+ 
+      map.add(po.image()
+          .url(po.url("http://{S}tile.cloudmade.com"
+          + "/1a1b06b230af4efdbb989ea99e9841af" // http://cloudmade.com/register
+          + "/20760/256/{Z}/{X}/{Y}.png")
+          .hosts(["a.", "b.", "c.", ""])));
+     
+      // add an empty layer  
+      var layer = po.geoJson().features([])
+          .on("load", load);
+ 
+      map.add(po.compass()
+          .pan("none"));
+      
+      function load(e) {
+        for (var i = 0; i < e.features.length; i++) {
+          var feature = e.features[i];
+          feature.element.setAttribute("id", feature.data.id);
+        }
+      }
+
+      // add new features to the layer
+      function add_feature(feature){
+        var all = layer.features();
+        all.push(feature);
+        console.log(all);
+        layer.features(all);
+        layer.reload();
+      }
+
+    </script>
+  </body>
+</html>

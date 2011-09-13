@@ -1,6 +1,8 @@
+var auth = require('./auth');
+
 // TWITTER STREAMING 
 var TwitterNode = require('twitter-node').TwitterNode;
-var twit = new TwitterNode({ user: '', password: ''});
+var twit = new TwitterNode({ user: auth.user, password: auth.pass});
 twit.headers['User-Agent'] = 'foss4g.demo.tool';
 twit.addListener('error', function (err) { console.log(err.message); });
 twit.addListener('tweet', function (tweet) {

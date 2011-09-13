@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="../lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/polymaps.js"></script>
+    <style type="text/css">
+      @import url("../lib/example.css");
+    </style>
+  </head>
+  <body id="map">
+    <h1>Click events</h1>
+    <script type="text/javascript">
+
+      var po = org.polymaps;
+
+      var map = po.map()
+        .container(document.getElementById("map").appendChild(po.svg("svg")))
+        .add(po.interact())
+        .add(po.hash());
+
+      map.add(po.image()
+        .url(po.url("http://{S}tile.cloudmade.com"
+        + "/1a1b06b230af4efdbb989ea99e9841af"
+        + "/998/256/{Z}/{X}/{Y}.png")
+        .hosts(["a.", "b.", "c.", ""])));
+
+      map.add(po.compass()
+        .pan("none"));
+
+      $('#map').click(function(e){
+        console.log('x: ', e.clientX, 'y: ',e.clientY, e);
+        console.log(map.coordinateLocation({'column':e.clientX,'row':e.clientY, 'zoom':map.zoom()})); 
+      });
+
+    </script>
+  </body>
+</html>

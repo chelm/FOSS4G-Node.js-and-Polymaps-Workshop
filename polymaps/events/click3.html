@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="../lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/polymaps.js"></script>
+    <style type="text/css">
+      @import url("../lib/example.css");
+    </style>
+  </head>
+  <body id="map">
+    <h1>Click events</h1>
+    <script type="text/javascript">
+
+      var dataByElement = {};
+      var po = org.polymaps;
+
+      var map = po.map()
+        .container(document.getElementById("map").appendChild(po.svg("svg")))
+        .center({lat: 39, lon: -105})
+        .zoom(4)
+        .add(po.interact())
+        .add(po.hash());
+
+      map.add(po.image()
+        .url(po.url("http://{S}tile.cloudmade.com"
+        + "/1a1b06b230af4efdbb989ea99e9841af"
+        + "/998/256/{Z}/{X}/{Y}.png")
+        .hosts(["a.", "b.", "c.", ""])));
+
+      map.add(po.geoJson()
+          .url("http://geocommons.com/overlays/110964/features.json?geojson=1&limit=300&hex_geometry=0")
+          .tile(false)
+          .on("load", load));
+
+      map.add(po.compass()
+        .pan("none"));
+
+      function load(e) {
+        for (var i = 0; i < e.features.length; i++) {
+          var feature = e.features[i];
+          feature.element.setAttribute("id", i);
+          feature.element.setAttribute("style", "fill:#FF0; stroke:#00F;stroke-width:2px;");
+          feature.element.setAttribute("r", 15);
+          // click events
+          feature.element.addEventListener("click", click(feature.data), false);
+        }
+      }
+
+      function click(data){
+        return function(e) {
+          dump(data);
+        }
+      }
+
+      // send the data back to the server
+      function dump(data){
+        console.log(data);
+        $.get('http://127.0.0.1:8888/point?lat='+data.properties.latitude+'&lon='+data.properties.longitude+'&callback=?',function(result){
+            console.log('Successful POST!', result);
+          })
+      }
+    </script>
+  </body>
+</html>

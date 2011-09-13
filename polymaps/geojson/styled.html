@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="../lib/polymaps.js"></script>
+    <style type="text/css">
+      @import url("../lib/colorbrewer.css");
+      @import url("../lib/example.css");
+    </style>
+  </head>
+  <body id="map">
+    <h1>GeoJSON Data</h1>
+    <script type="text/javascript">
+
+      function randomNum(min, max){
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      var color_class = 'YlGn';
+
+      var po = org.polymaps;
+
+      var map = po.map()
+        .container(document.getElementById("map").appendChild(po.svg("svg")))
+        .center({lat: 39, lon: -96})
+        .zoom(4)
+        .zoomRange([3, 7])
+        .add(po.interact());
+    
+      map.add(po.image()
+          .url(po.url("http://{S}tile.cloudmade.com"
+          + "/1a1b06b230af4efdbb989ea99e9841af" // http://cloudmade.com/register
+          + "/20760/256/{Z}/{X}/{Y}.png")
+          .hosts(["a.", "b.", "c.", ""])));
+      
+      map.add(po.geoJson()
+          .url("http://polymaps.appspot.com/county/{Z}/{X}/{Y}.json")
+          .on("load", load));
+      
+      map.add(po.compass()
+          .pan("none"));
+      
+      map.container().setAttribute("class", color_class);
+      
+      function load(e) {
+        for (var i = 0; i < e.features.length; i++) {
+          var feature = e.features[i];
+          feature.element.setAttribute("id", feature.data.id);
+          feature.element.setAttribute("class", "q" + randomNum(0,8) + "-" + 9);
+        }
+      }
+
+    </script>
+  </body>
+</html>

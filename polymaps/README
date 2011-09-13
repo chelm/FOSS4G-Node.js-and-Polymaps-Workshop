@@ -1,0 +1,5 @@
+1. Hello world - simple html file that loads a basemap tile layer from cloudmade
+
+2. geojson - a series of html that load remote geojson data 
+
+3. events - quick example on how to add some simple events 

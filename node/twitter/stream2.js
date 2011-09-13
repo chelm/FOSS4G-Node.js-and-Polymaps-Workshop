@@ -1,3 +1,5 @@
+var auth = require('./auth.js');
+
 var TwitterNode = require('twitter-node').TwitterNode,
     EventEmitter = require('events').EventEmitter;
 
@@ -9,7 +11,7 @@ emitter.addListener('tweet', function(tweet){
   console.log({text:tweet.text, lat:lat, lon:lon})
 })
 
-var twit = new TwitterNode({ user: '', password: ''});
+var twit = new TwitterNode({ user: auth.user, password: auth.pass});
 
 twit.headers['User-Agent'] = 'foss4g.demo.tool';
 

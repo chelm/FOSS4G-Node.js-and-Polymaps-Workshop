@@ -2,11 +2,12 @@ var EventEmitter = require('events').EventEmitter,
     puts = require('sys').puts;
 
 
+// generates a random number (random lat/lons)
 function randomNum(min, max){
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
+// again out ticket object
 var Ticker = function( interval ){
   var self = this, 
   nextTick = function(){

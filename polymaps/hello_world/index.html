@@ -10,20 +10,23 @@
     <h1>Hello Polymaps</h1>
     <script type="text/javascript">
 
+      // the global polymaps objects
       var po = org.polymaps;
 
+      // create a new map and add some interaction
       var map = po.map()
         .container(document.getElementById("map").appendChild(po.svg("svg")))
         .add(po.interact())
         .add(po.hash());
-
+  
+      // add a basemap layer
       map.add(po.image()
         .url(po.url("http://{S}tile.cloudmade.com"
         + "/1a1b06b230af4efdbb989ea99e9841af" // http://cloudmade.com/register
-        //+ "/1a1b06b230af4efdbb989ea99e9841af"
         + "/998/256/{Z}/{X}/{Y}.png")
         .hosts(["a.", "b.", "c.", ""])));
 
+      // compass lets us zoom!!
       map.add(po.compass()
         .pan("none"));
 

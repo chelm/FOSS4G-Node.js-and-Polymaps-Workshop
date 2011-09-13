@@ -1,0 +1,13 @@
+Welcome to the Node.JS and Polymaps Workshop at FOSS4G.
+
+The workshop will moves in 4 sections:
+
+1. Getting Start - We have to do some work to simply set the stage for the workshop. Installing apache, git, node, and npm. 
+
+2. Node.js - We're going to walk through some intro level node.js code and explore some concepts and ideas that may be new to us. 
+
+3. Polymaps - A series of HTML code that walks though some of the features of polymaps. 
+
+4. Websockets! - A very simple example of how to communicate over web sockets.
+
+

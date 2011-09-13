@@ -1,6 +1,22 @@
+1. hello_world
 
-# 1. hello_world
+    a. hello.js   
+    b. static.js/index.html
+    c. express/
+      1. app.js
+      2. simple.js
+      3. views/
+        - index.jade
+        - layout.jade
 
-# 2. events
+2. events
 
-# 3. twitter 
+    a. example1.js 
+    b. example2.js 
+    c. example3.js 
+
+3. twitter 
+
+    a. stream1.js 
+    b. stream2.js
+    c. auth.js 

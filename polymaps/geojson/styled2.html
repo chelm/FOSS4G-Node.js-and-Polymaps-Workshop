@@ -17,7 +17,7 @@
         return Math.floor(Math.random() * (max - min + 1)) + min;
       }
   
-      // Compute noniles.
+      // Compute noniles. (via protovis)
       var quantile = pv.Scale.quantile()
         .quantiles(9)
         .domain(pv.values(unemployment))
@@ -45,14 +45,17 @@
       
       map.add(po.compass()
           .pan("none"));
-      
+     
+      // define the color class for the data (simply sets a class of the svg container) 
       map.container().setAttribute("class", 'RdPu');
       
       function load(e) {
         for (var i = 0; i < e.features.length; i++) {
           var feature = e.features[i];
           feature.element.setAttribute("id", feature.data.id);
+          // get the local data for the county
           var d = unemployment[feature.data.id.substring(7)];
+          // assign the right class
           feature.element.setAttribute("class", "q" + quantile(d) + "-" + 9);
         }
       }

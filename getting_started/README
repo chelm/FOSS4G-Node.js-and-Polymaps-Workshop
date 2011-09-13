@@ -1,5 +1,18 @@
+1. Verify that git is installed....
 
-1. Install apache2
+    if not: >>> sudo apt-get install git 
+
+
+2. Get the workshop code from git hub
+
+    >>> git clone git@github.com:chelm/FOSS4G-Node.js-and-Polymaps-Workshop.git
+
+    >>> mv FOSS4G-Node.js-and-Polymaps-Workshop /var/www/foss4g
+
+    >>> cd /var/www/foss4g
+
+
+3. Install apache2
 
   The VMs dont have apache installed so we need to install it: 
 
@@ -9,7 +22,7 @@
 
 
 
-2. Upgrading Node.js
+4. Upgrading Node.js
 
   We need to upgrade node.js to version ~ 4.* and I've written a script to do it: 
 
@@ -17,16 +30,7 @@
 
 
 
-3. Install npm 
+5. Install npm 
 
     >>> curl http://npmjs.org/install.sh | sh
 
-
-
-4. Get the workshop code from git hub 
-
-    >>> git clone git@github.com:chelm/FOSS4G-Node.js-and-Polymaps-Workshop.git
-
-    >>> mv FOSS4G-Node.js-and-Polymaps-Workshop /var/www/foss4g 
-
-    >>> cd /var/www/foss4g

@@ -1,0 +1,9 @@
+This is a very rough look at websockets and how to communicate between a map and a node app.
+
+There are two files:
+
+  server.js
+    - simple random point generator
+    - to run: node server.js
+  socket.html 
+    - a polymaps app that just receives random points

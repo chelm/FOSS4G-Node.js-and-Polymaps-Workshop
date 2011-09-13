@@ -1,2 +1,2 @@
-exports.user = 'cwhelm';
-exports.pass = '1cellar$';
+exports.user = '';
+exports.pass = '';

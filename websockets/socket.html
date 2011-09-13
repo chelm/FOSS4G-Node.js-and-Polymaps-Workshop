@@ -27,9 +27,8 @@
 
       var map = po.map()
         .container(document.getElementById("map").appendChild(po.svg("svg")))
-        .center({lat: 39, lon: -96})
-        .zoom(4)
-        .zoomRange([3, 7])
+        .center({lat:0, lon:0})
+        .zoom(2)
         .add(po.interact());
  
       map.add(po.image()
@@ -41,6 +40,8 @@
       // add an empty layer  
       var layer = po.geoJson().features([])
           .on("load", load);
+
+      map.add(layer);
  
       map.add(po.compass()
           .pan("none"));
